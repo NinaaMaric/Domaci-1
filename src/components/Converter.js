@@ -53,7 +53,7 @@ class Converter extends React.Component {
         .then((response) => {
           const result =
             this.state.amount * response.data.rates[this.state.toCurrency];
-          this.setState({ result: result.toFixed(5) });
+          this.setState({ result: result.toFixed(3) });
         })
         .catch((error) => {
           console.log("Opps", error.message);
@@ -113,7 +113,7 @@ class Converter extends React.Component {
           <button className="btn waves-effect waves-light" onClick={this.convertHandler}>
             Convert
           </button>
-          {this.state.result && <h3>{this.state.result}</h3>}
+          {this.state.result && <h3>{this.state.result} {this.state.toCurrency}</h3>}
         </div>
       </>
     );
