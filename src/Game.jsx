@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-
+import Prompt from "./components/Prompt";
 import "./style.scss";
 
 import Grid from "./components/Grid";
@@ -50,17 +50,21 @@ export default function Game() {
 
   useEffect(() => {
     if (noOfTry === 0) {
-      Swal.fire({
-        text: "Potrosili ste sve pokusaje, probajte iz pocetka",
-        icon: "error",
+      Prompt.fire({
+        title: "Zavrsena igra",
+        text: "Potrosili ste sve pokusaje. Da li zelite da pokusate ponovo?",
+        confirmButtonText: "Da",
+        cancelButtonText: "Ne",
+        preConfirm: () => {
+          setNewGame(!newGame);
+          setVisibleItems([]);
+          setFinishedItems([]);
+          setWinner(false);
+          setTimeout(() => {
+            setNoOfTry(5);
+          }, 600);
+        },
       });
-      setNewGame(!newGame);
-      setVisibleItems([]);
-      setFinishedItems([]);
-      setWinner(false);
-      setTimeout(() => {
-        setNoOfTry(5);
-      }, 600);
     }
   }, [noOfTry]);
 
@@ -107,6 +111,21 @@ export default function Game() {
     if (finishedItems.length > 0 && finishedItems.length === list.length) {
       setWinner(true);
       clearInterval(durationIntervalRef.current);
+      Prompt.fire({
+        title: "Zavrsena igra",
+        text: "Da li zelite da ponovite igru?",
+        confirmButtonText: "Da",
+        cancelButtonText: "Ne",
+        preConfirm: () => {
+          setNewGame(!newGame);
+          setVisibleItems([]);
+          setFinishedItems([]);
+          setWinner(false);
+          setTimeout(() => {
+            setNoOfTry(5);
+          }, 600);
+        },
+      });
     }
   }, [finishedItems]);
 
