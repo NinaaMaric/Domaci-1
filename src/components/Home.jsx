@@ -27,19 +27,21 @@ function Home() {
 
   const add = () => {
     window.location = "/add-post";
-  }
+  };
 
   return (
-    <div className="w-100 h-100">
-      <div style={{ textAlign: "right" }}>
-        <button className="ui primary button" onClick={add}> Dodaj post</button>
-      </div>
-
+    <div className="home">
       {loading
         ? "UCITAVANJE..."
         : data.map((item) => {
             return <Post key={item.id} blog={item} />;
           })}
+      <div style={{ textAlign: "right" }}>
+        <button className="ui primary button" onClick={add}>
+          {" "}
+          Dodaj post
+        </button>
+      </div>
     </div>
   );
 }

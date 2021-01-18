@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { validation } from "../scheme/Scheme";
+import './components.css'
 
 function AddPost() {
   const [data, setData] = useState([]);
@@ -74,7 +75,7 @@ function AddPost() {
   };
 
   return (
-    <div style={{ width: "50%", marginLeft: "3rem", marginTop: "3rem" }}>
+    <div  className='add-post-form'>
       <form onSubmit={handleSubmit(onSubmit)} className="ui form">
         <input
           type="text"
