@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Home from './components/Home';
 import AddPost from './components/AddPost';
-import Post from './components/AddPost';
+import Post from './components/Post';
 
 function App() {
   return (
@@ -14,8 +14,8 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/add-post" exact component={AddPost} />
-          {/* <Route path="/post/:id" exact component={Post} /> */}
+          <Route path="/add-post" component={AddPost} />
+          <Route path="/post/:id" component={Post} /> 
         </Switch>
       </Router>
     </div>

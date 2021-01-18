@@ -25,16 +25,21 @@ function Home() {
     fetchData();
   }, []);
 
+  const viewPost = (id) => {
+    window.location = `/post/${id}`;
+    console.log('klik')
+  };
   const add = () => {
     window.location = "/add-post";
   };
+ 
 
   return (
     <div className="home">
       {loading
         ? "UCITAVANJE..."
         : data.map((item) => {
-            return <Post key={item.id} blog={item} />;
+            return <Post key={item.id} blog={item} viewPost={() => viewPost(item.id)}/>;
           })}
       <div style={{ textAlign: "right" }}>
         <button className="ui primary button" onClick={add}>
